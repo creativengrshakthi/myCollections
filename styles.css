@@ -26,9 +26,12 @@ header {
 }
 
 header.moved {
-  top: 20px;
-  left: 20px;
-  transform: translate(0, 0);
+  top: 0;
+  left: 0;
+  transform: none;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem 2rem;
 }
 
 .logo {

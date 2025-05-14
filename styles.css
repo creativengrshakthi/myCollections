@@ -49,12 +49,6 @@ header.moved {
   margin-left: auto;
 }
 
-header.moved .name {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 #line {
   position: absolute;
   top: 0;

@@ -39,9 +39,8 @@ header.moved {
 }
 
 .name {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .menu-icon {

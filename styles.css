@@ -19,15 +19,16 @@ header {
   text-align: center;
   z-index: 10;
   transition: all 0.5s ease;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 header.moved {
   top: 20px;
   left: 20px;
   transform: translate(0, 0);
-  display: flex;
-  align-items: center;
-  gap: 10px;
 }
 
 .logo {
@@ -41,6 +42,12 @@ header.moved {
 .name {
   font-weight: bold;
   font-size: 1.2rem;
+}
+
+header.moved .name {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .menu-icon {

@@ -16,12 +16,9 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
   z-index: 10;
   transition: all 0.5s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Ensure the header stays centered initially */
-  gap: 20px;
 }
 
 header.moved {

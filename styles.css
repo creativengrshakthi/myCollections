@@ -22,7 +22,9 @@ header {
 
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
+  width: auto;
 }
 
 header.moved {
@@ -51,6 +53,12 @@ header.moved {
 .menu-icon {
   font-size: 1.5rem;
   margin-left: auto;
+}
+
+header.moved .name {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 #line {

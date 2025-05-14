@@ -104,3 +104,10 @@ button {
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+
+.mea-culpa-regular {
+  font-family: "Mea Culpa", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.5rem; /* Optional: makes the cursive look better */
+}

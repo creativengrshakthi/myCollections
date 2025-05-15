@@ -79,6 +79,8 @@ header.moved {
 }
 
 .buttons {
+  position: relative; 
+  z-index: 1;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-style: italic;

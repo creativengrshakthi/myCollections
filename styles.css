@@ -111,32 +111,6 @@ button {
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.contact-block {
-  background-color: #c9d6e9;
-  color: #333;
-  text-align: center;
-  padding: 2rem 1rem;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.contact-block .name {
-  font-family: 'Georgia', serif;
-  font-weight: normal;
-  font-size: 1.8rem; /* bigger */
-  margin: 0.5rem 0 1rem 0;
-}
-
-.contact-block .contact-info {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-style: italic;
-  font-size: 1rem; /* smaller */
-  margin: 0.2rem 0;
-}
-
 .mea-culpa-regular {
   font-family: "Mea Culpa", cursive;
   font-weight: 400;

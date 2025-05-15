@@ -35,11 +35,9 @@ header.moved {
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-  border: 2px solid #ccc;
-  padding: 0.3rem 0.5rem;
-  border-radius: 5px;
+  height: 40px;
+  width: auto;
+  border-radius: 5px; /* Optional: for a rounded edge */
 }
 
 .name {

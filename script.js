@@ -36,4 +36,10 @@ window.addEventListener('scroll', () => {
   if (lastText.getBoundingClientRect().bottom < window.innerHeight * 0.8) {
     buttons.classList.add('show');
   }
+
+  if (drawLength >= pathLength) {
+  document.body.style.overflow = 'hidden';
+  window.scrollTo(0, window.scrollY); // Freeze the page
+}
+
 });

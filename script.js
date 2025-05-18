@@ -36,5 +36,4 @@ window.addEventListener('scroll', () => {
   if (lastText.getBoundingClientRect().bottom < window.innerHeight * 0.8) {
     buttons.classList.add('show');
   }
-
 });

@@ -37,9 +37,4 @@ window.addEventListener('scroll', () => {
     buttons.classList.add('show');
   }
 
-  if (drawLength >= pathLength) {
-  document.body.style.overflow = 'hidden';
-  window.scrollTo(0, window.scrollY); // Freeze the page
-}
-
 });

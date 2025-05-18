@@ -10,11 +10,13 @@ path.style.strokeDashoffset = pathLength;
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
 
-  // Move header to top
+  // Move header to top and toggle body background color
   if (scrollY > 50) {
     header.classList.add('moved');
+    document.body.classList.add('scrolled-bg');  // Add background class
   } else {
     header.classList.remove('moved');
+    document.body.classList.remove('scrolled-bg'); // Remove background class
   }
 
   // Animate line
@@ -22,9 +24,8 @@ window.addEventListener('scroll', () => {
   const drawLength = pathLength * (scrollY / maxScroll);
   path.style.strokeDashoffset = pathLength - drawLength;
 
-
-  // Fade in text
-  texts.forEach((el, i) => {
+  // Fade in/out text
+  texts.forEach((el) => {
     const revealPoint = window.innerHeight * 0.7;
     const elTop = el.getBoundingClientRect().top;
 

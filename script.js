@@ -8,8 +8,8 @@ path.style.strokeDasharray = pathLength;
 path.style.strokeDashoffset = pathLength;
 
 // Scroll thresholds
-const drawEnd = 600;   // Fully drawn at this scroll position
-const wipeEnd = 1200;  // Fully wiped at this scroll position
+const drawEnd = 600;   // Line fully drawn by this scroll position
+const wipeEnd = 1200;  // Line fully wiped by this scroll position
 
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
@@ -21,24 +21,22 @@ window.addEventListener('scroll', () => {
     header.classList.remove('moved');
   }
 
-  // === Line stroke animation (draw → wipe, same direction) ===
-  let offset;
-
+  // === Line animation: draw → wipe ===
   if (scrollY <= drawEnd) {
-    // Drawing phase: from pathLength → 0
-    const progress = scrollY / drawEnd;
-    offset = pathLength * (1 - progress);
-  } else if (scrollY <= wipeEnd) {
-    // Wiping phase: from 0 → pathLength
-    const progress = (scrollY - drawEnd) / (wipeEnd - drawEnd);
-    offset = pathLength * progress;
+    // Drawing phase: from top to bottom
+    const drawProgress = scrollY / drawEnd;
+    path.style.strokeDashoffset = pathLength * (1 - drawProgress);
+    path.style.opacity = 1;
+  } else if (scrollY > drawEnd && scrollY <= wipeEnd) {
+    // Wiping phase: erasing from top to bottom
+    const wipeProgress = (scrollY - drawEnd) / (wipeEnd - drawEnd);
+    path.style.strokeDashoffset = pathLength * wipeProgress;
+    path.style.opacity = 1;
   } else {
-    // Beyond wipe end: fully hidden
-    offset = pathLength;
+    // Line fully wiped
+    path.style.strokeDashoffset = pathLength;
+    path.style.opacity = 0;
   }
-
-  path.style.strokeDashoffset = offset;
-  path.style.opacity = offset >= pathLength ? 0 : 1;
 
   // === Fade-in text ===
   texts.forEach((el) => {
@@ -50,7 +48,7 @@ window.addEventListener('scroll', () => {
     }
   });
 
-  // === Show buttons ===
+  // === Show buttons when text has scrolled into view ===
   const lastText = texts[texts.length - 1];
   if (lastText.getBoundingClientRect().bottom < window.innerHeight * 0.8) {
     buttons.classList.add('show');

@@ -7,30 +7,39 @@ const pathLength = path.getTotalLength();
 path.style.strokeDasharray = pathLength;
 path.style.strokeDashoffset = pathLength;
 
+// Scroll thresholds
+const drawEnd = 600;   // Line fully drawn by this scroll position
+const wipeEnd = 1200;  // Line fully wiped by this scroll position
+
 window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
 
-  // Move header to top
+  // === Header movement ===
   if (scrollY > 50) {
     header.classList.add('moved');
   } else {
     header.classList.remove('moved');
   }
 
-  // Animate line
-  const maxScrollForLine = 1000; // Adjust based on how long you want the line to show
+  // === Line animation: draw → wipe ===
+  if (scrollY <= drawEnd) {
+    // Drawing phase: from top to bottom
+    const drawProgress = scrollY / drawEnd;
+    path.style.strokeDashoffset = pathLength * (1 - drawProgress);
+    path.style.opacity = 1;
+  } else if (scrollY > drawEnd && scrollY <= wipeEnd) {
+    // Wiping phase: erasing from top to bottom
+    const wipeProgress = (scrollY - drawEnd) / (wipeEnd - drawEnd);
+    path.style.strokeDashoffset = pathLength * wipeProgress;
+    path.style.opacity = 1;
+  } else {
+    // Line fully wiped
+    path.style.strokeDashoffset = pathLength;
+    path.style.opacity = 0;
+  }
 
-if (scrollY < maxScrollForLine) {
-  const drawLength = pathLength * (scrollY / maxScrollForLine);
-  path.style.strokeDashoffset = pathLength - drawLength;
-  path.style.opacity = 1;
-} else {
-  path.style.strokeDashoffset = 0;
-  path.style.opacity = 0; // Hide line after it finishes
-}
-
-  // Fade in text
-  texts.forEach((el, i) => {
+  // === Fade-in text ===
+  texts.forEach((el) => {
     const revealPoint = window.innerHeight * 0.7;
     const elTop = el.getBoundingClientRect().top;
 
@@ -39,9 +48,11 @@ if (scrollY < maxScrollForLine) {
     }
   });
 
-  // Show buttons
+  // === Show buttons when text has scrolled into view ===
   const lastText = texts[texts.length - 1];
   if (lastText.getBoundingClientRect().bottom < window.innerHeight * 0.8) {
     buttons.classList.add('show');
+  } else {
+    buttons.classList.remove('show');
   }
 });

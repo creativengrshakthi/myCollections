@@ -18,10 +18,8 @@ window.addEventListener('scroll', () => {
   }
 
   // Animate line
-  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-  const drawLength = pathLength * (scrollY / maxScroll);
+  const drawLength = pathLength * (scrollY / document.body.scrollHeight);
   path.style.strokeDashoffset = pathLength - drawLength;
-
 
   // Fade in text
   texts.forEach((el, i) => {
@@ -30,8 +28,6 @@ window.addEventListener('scroll', () => {
 
     if (elTop < revealPoint) {
       el.classList.add('visible');
-    } else {
-      el.classList.remove('visible');
     }
   });
 

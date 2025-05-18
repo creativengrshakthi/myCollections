@@ -1,65 +1,39 @@
-const header = document.getElementById('header');
-const texts = document.querySelectorAll('.fade-text');
-const buttons = document.querySelector('.buttons');
-const path = document.querySelector('#line path');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shakthi Sivasankar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Mea+Culpa&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header id="header">
+    <img src="images/logo.png" alt="Logo" class="logo">
+    <div class="name montserrat">Shakthi Sivasankar</div>
+    <div class="menu-icon">&#9776;</div>
+  </header>
 
-const pathLength = path.getTotalLength();
-path.style.strokeDasharray = pathLength;
-path.style.strokeDashoffset = pathLength;
+  <main>
+    <svg id="line" height="2000" width="100">
+      <!-- Path: straight → loop → straight -->
+<path d="M50 0 L50 300 C80 350, 80 450, 50 500 C20 550, 20 650, 50 700 L50 1600" stroke="#c9d6e9" stroke-width="4" fill="transparent" />
+    </svg>
 
-// Scroll thresholds
-const drawEnd = 600;   // Fully drawn by 600px
-const wipeEnd = 1200;  // Fully wiped by 1200px
+    <section class="content">
+      <h2 class="fade-text mea-culpa-regular">I'm not great at the advice</h2>
+      <h1 class="fade-text">CAN I INTEREST YOU IN A(N)</h1>
 
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
+      <div class="buttons hidden">
+        <button>poem?</button>
+        <button>design?</button>
+        <button>essay?</button>
+      </div>
+    </section>
+  </main>
 
-  // === Header animation ===
-  if (scrollY > 50) {
-    header.classList.add('moved');
-  } else {
-    header.classList.remove('moved');
-  }
-
-  // === Line draw ===
-  if (scrollY <= drawEnd) {
-    const progress = scrollY / drawEnd;
-    path.style.strokeDashoffset = pathLength * (1 - progress);
-    path.style.strokeDasharray = pathLength;
-    path.style.opacity = 1;
-
-  // === Bottom to Top Wipe ===
-  } else if (scrollY > drawEnd && scrollY <= wipeEnd) {
-    const wipeProgress = (scrollY - drawEnd) / (wipeEnd - drawEnd);
-    const remainingLength = pathLength * (1 - wipeProgress);
-    const offset = pathLength - remainingLength;
-
-    path.style.strokeDasharray = remainingLength + ' ' + pathLength;
-    path.style.strokeDashoffset = offset;
-    path.style.opacity = 1;
-
-  // === Fully wiped
-  } else {
-    path.style.strokeDasharray = '0 ' + pathLength;
-    path.style.strokeDashoffset = pathLength;
-    path.style.opacity = 0;
-  }
-
-  // === Fade in text ===
-  texts.forEach((el) => {
-    const revealPoint = window.innerHeight * 0.7;
-    const elTop = el.getBoundingClientRect().top;
-
-    if (elTop < revealPoint) {
-      el.classList.add('visible');
-    }
-  });
-
-  // === Show buttons ===
-  const lastText = texts[texts.length - 1];
-  if (lastText.getBoundingClientRect().bottom < window.innerHeight * 0.8) {
-    buttons.classList.add('show');
-  } else {
-    buttons.classList.remove('show');
-  }
-});
+  <script src="script.js"></script>
+  
+</body>
+</html>

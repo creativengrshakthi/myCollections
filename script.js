@@ -18,8 +18,16 @@ window.addEventListener('scroll', () => {
   }
 
   // Animate line
-  const drawLength = pathLength * (scrollY / document.body.scrollHeight);
+  const maxScrollForLine = 1000; // Adjust based on how long you want the line to show
+
+if (scrollY < maxScrollForLine) {
+  const drawLength = pathLength * (scrollY / maxScrollForLine);
   path.style.strokeDashoffset = pathLength - drawLength;
+  path.style.opacity = 1;
+} else {
+  path.style.strokeDashoffset = 0;
+  path.style.opacity = 0; // Hide line after it finishes
+}
 
   // Fade in text
   texts.forEach((el, i) => {

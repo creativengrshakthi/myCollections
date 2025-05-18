@@ -30,10 +30,11 @@ window.addEventListener('scroll', () => {
     path.style.opacity = 1;
   } else if (scrollY > drawEnd && scrollY <= wipeEnd) {
     // Wipe line: bottom to top
+    // Wipe line: top to bottom
     const wipeProgress = (scrollY - drawEnd) / (wipeEnd - drawEnd);
     const visibleLength = pathLength * (1 - wipeProgress);
     path.style.strokeDashoffset = pathLength - visibleLength;
-    path.style.strokeDasharray = pathLength;
+    path.style.strokeDasharray = visibleLength + ' ' + pathLength;
     path.style.opacity = 1;
   } else {
     // Fully wiped out

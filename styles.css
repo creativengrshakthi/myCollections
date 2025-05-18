@@ -11,12 +11,6 @@ body {
   overflow-x: hidden;
 }
 
-body.scrolled-bg {
-  background-color: #d1dbe5; /* baby blue/greyish */
-  transition: background-color 0.5s ease;
-}
-
-
 header {
   position: fixed;
   top: 50%;
@@ -38,9 +32,6 @@ header.moved {
   width: 100%;
   justify-content: space-between;
   padding: 1rem 2rem;
-  background-color: white; /* keep header background white when moved */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  
 }
 
 .logo {

@@ -23,18 +23,21 @@ window.addEventListener('scroll', () => {
 
   // === Line draw & wipe (top to bottom for both) ===
   if (scrollY <= drawEnd) {
-    // Draw line (0 → drawEnd)
+    // Draw line: offset goes from full length → 0, dasharray fixed
     const progress = scrollY / drawEnd;
     path.style.strokeDashoffset = pathLength * (1 - progress);
+    path.style.strokeDasharray = pathLength;
     path.style.opacity = 1;
   } else if (scrollY > drawEnd && scrollY <= wipeEnd) {
-    // Continue wiping in same direction (drawEnd → wipeEnd)
+    // Wipe line: offset fixed at 0, dasharray shrinks top to bottom
     const wipeProgress = (scrollY - drawEnd) / (wipeEnd - drawEnd);
-    path.style.strokeDashoffset = pathLength * wipeProgress;
+    path.style.strokeDashoffset = 0;
+    path.style.strokeDasharray = (pathLength * (1 - wipeProgress)) + ' ' + pathLength;
     path.style.opacity = 1;
   } else {
-    // Fully erased
-    path.style.strokeDashoffset = pathLength;
+    // Fully wiped out: no visible dash
+    path.style.strokeDashoffset = 0;
+    path.style.strokeDasharray = '0 ' + pathLength;
     path.style.opacity = 0;
   }
 

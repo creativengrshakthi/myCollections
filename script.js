@@ -30,9 +30,11 @@ window.addEventListener('scroll', () => {
     path.style.opacity = 1;
   } else if (scrollY > drawEnd && scrollY <= wipeEnd) {
     // Wipe line: offset fixed at 0, dasharray shrinks top to bottom
+    // Wipe line: top to bottom
     const wipeProgress = (scrollY - drawEnd) / (wipeEnd - drawEnd);
-    path.style.strokeDashoffset = 0;
-    path.style.strokeDasharray = (pathLength * (1 - wipeProgress)) + ' ' + pathLength;
+    const visibleLength = pathLength * (1 - wipeProgress);
+    path.style.strokeDashoffset = pathLength - visibleLength;
+    path.style.strokeDasharray = visibleLength + ' ' + pathLength;
     path.style.opacity = 1;
   } else {
     // Fully wiped out: no visible dash

@@ -130,12 +130,9 @@ button {
   background-color: #c9d6e9;
   height: 100vh;
   width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  position: relative; /* <--- changed from absolute */
   z-index: 0;
 }
-
 
 .blue-block.fade-in {
   animation: fadeIn 1s ease-in-out forwards;

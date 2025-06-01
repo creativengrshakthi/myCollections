@@ -128,12 +128,12 @@ button {
 
 .blue-block {
   background-color: #c9d6e9;
-  height: 100vh;
+  height: 60vh;
   width: 100%;
-  position: relative; /* <--- changed from absolute */
+  position: relative;
+  margin-top: 5rem;
   z-index: 0;
 }
-
 .blue-block.fade-in {
   animation: fadeIn 1s ease-in-out forwards;
 }
